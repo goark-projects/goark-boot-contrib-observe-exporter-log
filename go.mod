@@ -4,10 +4,10 @@ go 1.25
 
 require (
 	goark.dev/boot v0.0.0-20260902110755-1bc0082c607a
-	goark.dev/gbc-log v0.0.0-20260903123825-ac7837a2856c
+	goark.dev/gbc-log v0.0.0-20260903130207-3ccbc73f3834
 	goark.dev/gbc-observe v0.0.0-20260903075418-3c520a40f6a7
 	goark.dev/goark v0.0.0-20260903021045-47c39724cfc4
-	goark.dev/log v0.0.3-0.20260903123157-70c5420fcd7e
+	goark.dev/log v0.0.3-0.20260903130032-7307f7e86ccc
 	goark.dev/observe v0.0.0-20260902005121-bfd1b0de0c99
 	goark.dev/observe-exporter-log v0.0.0-20260903065050-1462a791ce68
 )
