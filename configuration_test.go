@@ -72,6 +72,43 @@ func TestAutoConfigureDisabledDoesNotExport(t *testing.T) {
 	}
 }
 
+func TestProviderShutdownRunsBeforeLoggerClose(t *testing.T) {
+	var output bytes.Buffer
+	app, err := boot.Run(t.Context(), boot.WithAutoConfiguration(
+		gbclog.AutoConfigure(gbclog.WithLoggerContextFactory(testLoggerFactory(&output))),
+		gbcobserve.AutoConfigure(gbcobserve.WithExporters(shutdownLoggingExporter{})),
+		gbcobserveexporterlog.AutoConfigure(),
+	))
+	if err != nil {
+		t.Fatalf("boot.Run: %v", err)
+	}
+	if err := app.Close(t.Context()); err != nil {
+		t.Fatalf("Close: %v", err)
+	}
+	if logs := output.String(); !strings.Contains(logs, "exporter shutdown log") {
+		t.Fatalf("provider shutdown could not write through goark-log: %s", logs)
+	}
+}
+
+type shutdownLoggingExporter struct{}
+
+func (shutdownLoggingExporter) Descriptor() observe.ExporterDescriptor {
+	return observe.ExporterDescriptor{
+		Name:         "test.shutdown-logging",
+		Signals:      observe.SignalTraces,
+		Stability:    observe.StabilityStable,
+		Capabilities: observe.ExporterCapabilities{Push: true},
+	}
+}
+func (shutdownLoggingExporter) ForceFlush(context.Context) error { return nil }
+func (shutdownLoggingExporter) Shutdown(ctx context.Context) error {
+	slog.Default().InfoContext(ctx, "exporter shutdown log")
+	return nil
+}
+func (shutdownLoggingExporter) ExportSpans(context.Context, []observe.SpanSnapshot) error {
+	return nil
+}
+
 func testLoggerFactory(output *bytes.Buffer) gbclog.LoggerContextFactory {
 	return func(context.Context, coreenv.Environment) (*goarklog.LoggerContext, error) {
 		return goarklog.NewLoggerContext(goarklog.Options{
