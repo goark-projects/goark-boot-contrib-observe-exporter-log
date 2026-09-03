@@ -9,7 +9,7 @@
 - 依赖方向固定为 `observe -> observe-exporter-log -> slog -> goark-log`。
 - `goark.dev/log` 永远不依赖观测体系。
 - 只导出 span 和 event；不导出 log，避免递归；不导出 metric，避免日志洪泛。
-- exporter 不持有 Logger 生命周期。Boot 在普通组件停止后、Provider 关闭前排空 goark-log。
+- exporter 不持有 Logger 生命周期。Boot 先停止普通组件，再关闭观测 Provider，最后排空 goark-log。
 
 ## 使用
 

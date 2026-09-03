@@ -9,7 +9,7 @@
 - Dependency direction is `observe -> observe-exporter-log -> slog -> goark-log`.
 - `goark.dev/log` never depends on observability.
 - Only spans and events are exported. Logs are excluded to prevent recursion, and metrics are excluded to prevent log floods.
-- The exporter does not own the logger. Boot lifecycle drains goark-log after ordinary components and before the observability provider shuts down.
+- The exporter does not own the logger. Boot stops ordinary components first, shuts down the observability provider next, and drains goark-log last.
 
 ## Usage
 
