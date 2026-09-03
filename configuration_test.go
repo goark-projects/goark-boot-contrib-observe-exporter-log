@@ -35,7 +35,7 @@ func TestAutoConfigureExportsSpansAndEventsThroughGoarkLog(t *testing.T) {
 		t.Fatalf("Close: %v", err)
 	}
 	logs := output.String()
-	for _, expected := range []string{"observability span completed", "observability event emitted", "admin.request", "/admin/users/{id}", "trace_id", "observe.exporter.log"} {
+	for _, expected := range []string{"observability span completed", "observability event emitted", "admin.request", "/admin/users/{id}", "trace_id", "goark.dev.observe.exporter.log"} {
 		if !strings.Contains(logs, expected) {
 			t.Fatalf("logs do not contain %q: %s", expected, logs)
 		}
@@ -111,9 +111,16 @@ func (shutdownLoggingExporter) ExportSpans(context.Context, []observe.SpanSnapsh
 
 func testLoggerFactory(output *bytes.Buffer) gbclog.LoggerContextFactory {
 	return func(context.Context, coreenv.Environment) (*goarklog.LoggerContext, error) {
+		layout, err := goarklog.NewPatternLayout("%logger : %msg%attrs%n")
+		if err != nil {
+			return nil, err
+		}
 		return goarklog.NewLoggerContext(goarklog.Options{
-			Appenders: []goarklog.Appender{goarklog.NewConsoleAppender(goarklog.WithConsoleWriter(output))},
-			Root:      goarklog.RootLogger{Level: slog.LevelInfo, AppenderRefs: []string{"console"}},
+			Appenders: []goarklog.Appender{goarklog.NewConsoleAppender(
+				goarklog.WithConsoleWriter(output),
+				goarklog.WithConsoleLayout(layout),
+			)},
+			Root: goarklog.RootLogger{Level: slog.LevelInfo, AppenderRefs: []string{"console"}},
 		})
 	}
 }

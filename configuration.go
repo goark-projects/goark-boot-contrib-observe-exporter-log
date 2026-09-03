@@ -14,7 +14,7 @@ import (
 	observeexporterlog "goark.dev/observe-exporter-log"
 )
 
-const exporterLoggerName = "observe.exporter.log"
+const exporterLoggerName = "goark.dev.observe.exporter.log"
 
 // AutoConfigure 创建日志 exporter 自动配置，并补充缺失的日志与观测基础配置。
 func AutoConfigure(options ...Option) boot.AutoConfiguration {

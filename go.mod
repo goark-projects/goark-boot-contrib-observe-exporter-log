@@ -7,7 +7,7 @@ require (
 	goark.dev/gbc-log v0.0.0-20260903121539-f0552bf0cdf7
 	goark.dev/gbc-observe v0.0.0-20260903075418-3c520a40f6a7
 	goark.dev/goark v0.0.0-20260903021045-47c39724cfc4
-	goark.dev/log v0.0.3-0.20260903121202-e1c0a25b1eb5
+	goark.dev/log v0.0.3-0.20260903123157-70c5420fcd7e
 	goark.dev/observe v0.0.0-20260902005121-bfd1b0de0c99
 	goark.dev/observe-exporter-log v0.0.0-20260903065050-1462a791ce68
 )

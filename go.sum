@@ -87,6 +87,8 @@ goark.dev/goark v0.0.0-20260903021045-47c39724cfc4 h1:P4ML/1zwl/qyZiADiXp0BLv1lW
 goark.dev/goark v0.0.0-20260903021045-47c39724cfc4/go.mod h1:k12AuZNrxTiRYbgFLfM/G450VqGHxhgLywK6K3q87HY=
 goark.dev/log v0.0.3-0.20260903121202-e1c0a25b1eb5 h1:PxriSXns71MOrnc+es/r27kQ/ySBRtfxAzTTwOZR1rw=
 goark.dev/log v0.0.3-0.20260903121202-e1c0a25b1eb5/go.mod h1:Kzol4R9ugz1sy2dP/7AXAOttrFQQlIW+B9xwSJRYOPs=
+goark.dev/log v0.0.3-0.20260903123157-70c5420fcd7e h1:EEzN6jI/Oeu+6tqbUb4qri3IZ6vhhqu5Bay43W5q/EA=
+goark.dev/log v0.0.3-0.20260903123157-70c5420fcd7e/go.mod h1:Kzol4R9ugz1sy2dP/7AXAOttrFQQlIW+B9xwSJRYOPs=
 goark.dev/observe v0.0.0-20260902005121-bfd1b0de0c99 h1:5SXm3jMUJ/z9twtLnvctAOC0/sPqi1HNyjhzMxK+2NQ=
 goark.dev/observe v0.0.0-20260902005121-bfd1b0de0c99/go.mod h1:mtoNe8O+rpszCLrlcX+lWHfOG+tNff+N/B1FHBAxs+0=
 goark.dev/observe-exporter-log v0.0.0-20260903065050-1462a791ce68 h1:Bp8oPDJ8nosUQT2Q7HFaDuGf7Q3sACYTJ9dSZVufSSs=
