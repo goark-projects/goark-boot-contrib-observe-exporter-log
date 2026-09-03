@@ -9,9 +9,12 @@ import (
 	gbcobserve "goark.dev/gbc-observe"
 	goarkcontainer "goark.dev/goark/container"
 	appcontext "goark.dev/goark/context"
+	goarklog "goark.dev/log"
 	"goark.dev/observe"
 	observeexporterlog "goark.dev/observe-exporter-log"
 )
+
+const exporterLoggerName = "observe.exporter.log"
 
 // AutoConfigure 创建日志 exporter 自动配置，并补充缺失的日志与观测基础配置。
 func AutoConfigure(options ...Option) boot.AutoConfiguration {
@@ -51,7 +54,7 @@ func (c configuration) RegisterWithContext(_ context.Context, config appcontext.
 		if err != nil {
 			return nil, err
 		}
-		return observeexporterlog.New(logger,
+		return observeexporterlog.New(goarklog.WithName(logger, exporterLoggerName),
 			observeexporterlog.WithSpanLevel(*resolved.spanLevel),
 			observeexporterlog.WithEventLevel(*resolved.eventLevel),
 			observeexporterlog.WithMaxAttributes(*resolved.maxAttributes),

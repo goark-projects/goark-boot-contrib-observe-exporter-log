@@ -35,7 +35,7 @@ func TestAutoConfigureExportsSpansAndEventsThroughGoarkLog(t *testing.T) {
 		t.Fatalf("Close: %v", err)
 	}
 	logs := output.String()
-	for _, expected := range []string{"observability span completed", "observability event emitted", "admin.request", "/admin/users/{id}", "trace_id"} {
+	for _, expected := range []string{"observability span completed", "observability event emitted", "admin.request", "/admin/users/{id}", "trace_id", "observe.exporter.log"} {
 		if !strings.Contains(logs, expected) {
 			t.Fatalf("logs do not contain %q: %s", expected, logs)
 		}
