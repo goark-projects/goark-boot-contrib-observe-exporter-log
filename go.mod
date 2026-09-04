@@ -3,10 +3,10 @@ module goark.dev/gbc-observe-exporter-log
 go 1.25
 
 require (
-	goark.dev/boot v0.0.0-20260902110755-1bc0082c607a
-	goark.dev/gbc-log v0.0.0-20260903130207-3ccbc73f3834
+	goark.dev/boot v0.0.0-20260903174742-ca13efcd3a24
+	goark.dev/gbc-log v0.0.0-20260904032843-5972a947a031
 	goark.dev/gbc-observe v0.0.0-20260903075418-3c520a40f6a7
-	goark.dev/goark v0.0.0-20260903021045-47c39724cfc4
+	goark.dev/goark v0.0.0-20260904010411-d90ef90bc395
 	goark.dev/log v0.0.3-0.20260904031848-3a1f8d1056fe
 	goark.dev/observe v0.0.0-20260902005121-bfd1b0de0c99
 	goark.dev/observe-exporter-log v0.0.0-20260903065050-1462a791ce68
