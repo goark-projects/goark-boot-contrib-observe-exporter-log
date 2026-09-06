@@ -9,7 +9,7 @@ import (
 	gbcobserve "goark.dev/gbc-observe"
 	goarkcontainer "goark.dev/goark/container"
 	appcontext "goark.dev/goark/context"
-	goarklog "goark.dev/log"
+	"goark.dev/log"
 	"goark.dev/observe"
 	observeexporterlog "goark.dev/observe-exporter-log"
 )
@@ -54,7 +54,7 @@ func (c configuration) RegisterWithContext(_ context.Context, config appcontext.
 		if err != nil {
 			return nil, err
 		}
-		return observeexporterlog.New(goarklog.WithName(logger, exporterLoggerName),
+		return observeexporterlog.New(log.WithName(logger, exporterLoggerName),
 			observeexporterlog.WithSpanLevel(*resolved.spanLevel),
 			observeexporterlog.WithEventLevel(*resolved.eventLevel),
 			observeexporterlog.WithMaxAttributes(*resolved.maxAttributes),

@@ -13,7 +13,7 @@ import (
 	gbcobserveexporterlog "goark.dev/gbc-observe-exporter-log"
 	"goark.dev/goark"
 	coreenv "goark.dev/goark/core/env"
-	goarklog "goark.dev/log"
+	"goark.dev/log"
 	"goark.dev/observe"
 )
 
@@ -110,17 +110,17 @@ func (shutdownLoggingExporter) ExportSpans(context.Context, []observe.SpanSnapsh
 }
 
 func testLoggerFactory(output *bytes.Buffer) gbclog.LoggerContextFactory {
-	return func(context.Context, coreenv.Environment) (*goarklog.LoggerContext, error) {
-		layout, err := goarklog.NewPatternLayout("%logger : %msg%attrs%n")
+	return func(context.Context, coreenv.Environment) (*log.LoggerContext, error) {
+		layout, err := log.NewPatternLayout("%logger : %msg%attrs%n")
 		if err != nil {
 			return nil, err
 		}
-		return goarklog.NewLoggerContext(goarklog.Options{
-			Appenders: []goarklog.Appender{goarklog.NewConsoleAppender(
-				goarklog.WithConsoleWriter(output),
-				goarklog.WithConsoleLayout(layout),
+		return log.NewLoggerContext(log.Options{
+			Appenders: []log.Appender{log.NewConsoleAppender(
+				log.WithConsoleWriter(output),
+				log.WithConsoleLayout(layout),
 			)},
-			Root: goarklog.RootLogger{Level: slog.LevelInfo, AppenderRefs: []string{"console"}},
+			Root: log.RootLogger{Level: slog.LevelInfo, AppenderRefs: []string{"console"}},
 		})
 	}
 }
